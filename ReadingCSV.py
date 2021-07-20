@@ -10,6 +10,7 @@ download = df['Download']
 row = len(ip)
 BigArray = []
 count = 0
+print('test')
 #sorting into each client
 for col in range(row-1) :
 
