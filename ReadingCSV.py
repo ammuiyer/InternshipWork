@@ -1,5 +1,6 @@
 import pandas
-
+import numpy
+import math
 import matplotlib.pyplot as plt
 
 df = pandas.read_csv('/Users/meenakshiiyer/Internship/SQL_report_4.csv')
@@ -9,6 +10,7 @@ ip = df['clientIp']
 download = df['Download']
 upload = df['Upload']
 time = df['TimeUsage']
+host = df['hostName']
 row = len(ip)
 BigArray = []
 count = 0
@@ -59,6 +61,33 @@ for col in range(row-1) :
         count = count+1
 print(df_ip)
 #print(df)
- 
 
+hostNames = []
+#print(host)
+for col in range(len(host)):
+    print(host[col])
+    if (host[col] in hostNames) :
+        count = 0
+    else : 
+        hostNames.append(host[col])
 
+#print(hostNames)
+
+df_hosts = pandas.DataFrame(columns=['TotalDownload', 'TotalUpload', 'TotalTime'], index=hostNames)
+
+def is_nan(x):
+    return (x != x)
+
+for col in range(len(host)) :
+    for x in range(len(hostNames)) :
+        if(host[col]==hostNames[x]) :
+            if(is_nan(df_hosts.iloc[x,0])) : 
+                df_hosts.iat[x,0] = download[col] 
+                df_hosts.iat[x,1] = upload[col]
+                df_hosts.iat[x,2] = time[col]
+            else :
+                df_hosts.iat[x,0] = download[col] + df_hosts.iloc[x,0]
+                df_hosts.iat[x,1] = upload[col] + df_hosts.iloc[x,1]
+                df_hosts.iat[x,2] = time[col] + df_hosts.iloc[x,2]
+            
+print(df_hosts)
