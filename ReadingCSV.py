@@ -91,3 +91,9 @@ for col in range(len(host)) :
                 df_hosts.iat[x,2] = time[col] + df_hosts.iloc[x,2]
             
 print(df_hosts)
+
+
+plt.hist(df_ip.values)
+plt.show()
+plt.hist(df_hosts.values)
+plt.show()
