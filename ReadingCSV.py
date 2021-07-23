@@ -92,8 +92,10 @@ for col in range(len(host)) :
             
 print(df_hosts)
 
+for x in range(5) : 
+    plt.hist(df_ip.iloc[[x-1]].values)
+    plt.show()
 
-plt.hist(df_ip.values)
-plt.show()
-plt.hist(df_hosts.values)
-plt.show()
+for x in range(5) : 
+    plt.hist(df_hosts.iloc[[x-1]].values)
+    plt.show()
