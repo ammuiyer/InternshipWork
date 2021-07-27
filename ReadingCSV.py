@@ -91,11 +91,47 @@ for col in range(len(host)) :
                 df_hosts.iat[x,2] = time[col] + df_hosts.iloc[x,2]
             
 print(df_hosts)
+downld = df_ip['TotalDownload']
+upld = df_ip['TotalUpload']
+tim = df_ip['TotalTime']
 
 for x in range(5) : 
-    plt.hist(df_ip.iloc[[x-1]].values)
+    height = [downld[x-1], upld[x-1], tim[x-1]]
+    bars = ('Download', 'Upload', 'Time')
+    x_pos = numpy.arange(len(bars))
+ 
+
+    plt.bar(x_pos, height)
+ 
+    
+    plt.title('IP: ' + ip_list[x-1])
+    plt.xlabel('Categories')
+    plt.ylabel('Values')
+ 
+    
+    plt.xticks(x_pos, bars)
+ 
+    
     plt.show()
+downld = df_hosts['TotalDownload']
+upld = df_hosts['TotalUpload']
+tim = df_hosts['TotalTime']
 
 for x in range(5) : 
-    plt.hist(df_hosts.iloc[[x-1]].values)
+    height = [downld[x-1], upld[x-1], tim[x-1]]
+    bars = ('Download', 'Upload', 'Time')
+    x_pos = numpy.arange(len(bars))
+ 
+
+    plt.bar(x_pos, height)
+ 
+    
+    plt.title('HOST: ' + hostNames[x-1])
+    plt.xlabel('Categories')
+    plt.ylabel('Values')
+ 
+    
+    plt.xticks(x_pos, bars)
+ 
+    
     plt.show()
