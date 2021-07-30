@@ -123,23 +123,96 @@ downld = df_hosts['TotalDownload']
 upld = df_hosts['TotalUpload']
 tim = df_hosts['TotalTime']
 
-for x in range(5) : 
-    height = [downld[x-1], upld[x-1], tim[x-1]]
-    bars = ('Download', 'Upload', 'Time')
-    x_pos = numpy.arange(len(bars))
- 
 
-    plt.bar(x_pos, height)
- 
-    
-    plt.title('HOST: ' + hostNames[x-1])
-    plt.xlabel('Categories')
-    plt.ylabel('Values')
- 
-    
-    plt.xticks(x_pos, bars)
- 
-    
-    plt.show()
+top_downs = []
+top_downs2 = []
+top_ups = []
+top_time = []
+top_hosts = []
+top_ups2 = []
+top_time2 = []
 
-print(df)
+for x in range(len(download)) :
+    top_downs.append(download[x])
+    top_ups.append(upload[x])
+    top_time.append(time[x])
+    top_downs2.append(download[x])
+    top_ups2.append(upload[x])
+    top_time2.append(time[x])
+    
+
+
+
+for i in range(1, len(top_downs)):
+  
+        key = top_downs[i]
+        j = i-1
+        while j >=0 and key < top_downs[j] :
+                top_downs[j+1] = top_downs[j]
+                j -= 1
+        top_downs[j+1] = key
+
+
+for x in range(5) :
+    top_hosts.append(host[top_downs2.index(top_downs[x-1])])
+
+apps = (top_hosts[0], top_hosts[1], top_hosts[2], top_hosts[3], top_hosts[4])
+y_pos = numpy.arange(len(apps))
+height = [top_downs[0],top_downs[1],top_downs[2],top_downs[3],top_downs[4]]
+
+plt.bar(y_pos, height, align='center', alpha=0.5)
+plt.xticks(y_pos, apps)
+plt.title('Top Download' )
+plt.xlabel('Apps')
+plt.ylabel('Values')
+
+plt.show()
+
+for i in range(1, len(top_ups)):
+  
+        key = top_ups[i]
+        j = i-1
+        while j >=0 and key < top_ups[j] :
+                top_ups[j+1] = top_ups[j]
+                j -= 1
+        top_ups[j+1] = key
+
+for x in range(5) :
+    top_hosts.append(host[top_ups2.index(top_ups[x-1])])
+
+apps = (top_hosts[0], top_hosts[1], top_hosts[2], top_hosts[3], top_hosts[4])
+y_pos = numpy.arange(len(apps))
+height = [top_ups[0],top_ups[1],top_ups[2],top_ups[3],top_ups[4]]
+
+plt.bar(y_pos, height, align='center', alpha=0.5)
+plt.xticks(y_pos, apps)
+plt.title('Top Upload' )
+plt.xlabel('Apps')
+plt.ylabel('Values')
+
+plt.show()
+
+for i in range(1, len(top_time)):
+  
+        key = top_time[i]
+        j = i-1
+        while j >=0 and key < top_time[j] :
+                top_time[j+1] = top_time[j]
+                j -= 1
+        top_time[j+1] = key
+  
+
+for x in range(5) :
+    top_hosts.append(host[top_time2.index(top_time[x-1])])
+
+apps = (top_hosts[0], top_hosts[1], top_hosts[2], top_hosts[3], top_hosts[4])
+y_pos = numpy.arange(len(apps))
+height = [top_time[0],top_time[1],top_time[2],top_time[3],top_time[4]]
+
+plt.bar(y_pos, height, align='center', alpha=0.5)
+plt.xticks(y_pos, apps)
+plt.title('Top Time Usage' )
+plt.xlabel('Apps')
+plt.ylabel('Values')
+
+plt.show()
