@@ -164,7 +164,7 @@ plt.bar(y_pos, height, align='center', alpha=0.5)
 plt.xticks(y_pos, apps)
 plt.title('Top Download' )
 plt.xlabel('Apps')
-plt.ylabel('Values')
+plt.ylabel('Values (MB)')
 
 plt.show()
 
@@ -188,7 +188,7 @@ plt.bar(y_pos, height, align='center', alpha=0.5)
 plt.xticks(y_pos, apps)
 plt.title('Top Upload' )
 plt.xlabel('Apps')
-plt.ylabel('Values')
+plt.ylabel('Values (MB)')
 
 plt.show()
 
@@ -213,6 +213,6 @@ plt.bar(y_pos, height, align='center', alpha=0.5)
 plt.xticks(y_pos, apps)
 plt.title('Top Time Usage' )
 plt.xlabel('Apps')
-plt.ylabel('Values')
+plt.ylabel('Minutes')
 
 plt.show()
