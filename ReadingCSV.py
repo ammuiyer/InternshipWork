@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 df = pandas.read_csv('/Users/meenakshiiyer/Internship/SQL_report_4.csv')
 #print(df)
 
+#sorts df into series by column name
 ip = df['clientIp']
 download = df['Download']
 upload = df['Upload']
@@ -16,12 +17,13 @@ BigArray = []
 count = 0
 #print('test')
 #sorting into each client
+# counting each clinet
 for col in range(row-1) :
 
     if ip[col]!=ip[col+1]:
         count = count + 1
 
-    
+#array of arrays for the download times  
 for x in range(count+1) :
     newArray = []
     BigArray.append(newArray)   
@@ -29,6 +31,7 @@ for x in range(count+1) :
     
 count = 0  
 ip_list = [] 
+
 
 for col in range(row-1) :
     BigArray[count].append(download[col])
@@ -45,6 +48,7 @@ total_download = 0
 total_upload = 0
 total_time = 0
 count = 0
+#adding the values to the df
 for col in range(row-1) :
     total_download = total_download + download[col]
     total_upload = total_upload + upload[col]
@@ -77,7 +81,7 @@ df_hosts = pandas.DataFrame(columns=['TotalDownload', 'TotalUpload', 'TotalTime'
 
 def is_nan(x):
     return (x != x)
-
+#adding the megatbytes to the df
 for col in range(len(host)) :
     for x in range(len(hostNames)) :
         if(host[col]==hostNames[x]) :
@@ -132,6 +136,7 @@ top_hosts = []
 top_ups2 = []
 top_time2 = []
 
+#making two sets of arrays to sort
 for x in range(len(download)) :
     top_downs.append(download[x])
     top_ups.append(upload[x])
@@ -142,7 +147,7 @@ for x in range(len(download)) :
     
 
 
-
+#insertion sorting the donwload 
 for i in range(1, len(top_downs)):
   
         key = top_downs[i]
@@ -152,7 +157,7 @@ for i in range(1, len(top_downs)):
                 j -= 1
         top_downs[j+1] = key
 
-
+#creating the graphs of the download times
 for x in range(5) :
     top_hosts.append(host[top_downs2.index(top_downs[x-1])])
 
@@ -167,7 +172,7 @@ plt.xlabel('Apps')
 plt.ylabel('Values (MB)')
 
 plt.show()
-
+#insertion sorting the upload 
 for i in range(1, len(top_ups)):
   
         key = top_ups[i]
@@ -176,7 +181,7 @@ for i in range(1, len(top_ups)):
                 top_ups[j+1] = top_ups[j]
                 j -= 1
         top_ups[j+1] = key
-
+#creating the graphs of the upload times
 for x in range(5) :
     top_hosts.append(host[top_ups2.index(top_ups[x-1])])
 
@@ -191,7 +196,7 @@ plt.xlabel('Apps')
 plt.ylabel('Values (MB)')
 
 plt.show()
-
+#insertion sorting the times
 for i in range(1, len(top_time)):
   
         key = top_time[i]
@@ -201,7 +206,7 @@ for i in range(1, len(top_time)):
                 j -= 1
         top_time[j+1] = key
   
-
+#creating the graphs of the times
 for x in range(5) :
     top_hosts.append(host[top_time2.index(top_time[x-1])])
 
